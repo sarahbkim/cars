@@ -9,7 +9,9 @@
  */
 
 var parseYear = d3.time.format('%Y').parse,
-    parseYearMonth = d3.time.format('%m-%Y').parse
+    parseYearMonth = d3.time.format('%m-%Y').parse;
+
+
 
 angular.module('carsApp')
   .controller('MainCtrl', function($scope) {
@@ -239,6 +241,9 @@ angular.module('carsApp')
         $scope.items.forEach(function(d) {
           d.Year = parseYear(d.Year);
         });
+
+        var tip = d3.tip().attr('class', 'd3-tip')
+          .html(function(d) { return '<div>' + d.History + '</div>'; });
         
         var margins = {top: 250, right: 40, bottom: 250, left: 40},
             w = 400 - margins.left - margins.right,
@@ -258,6 +263,7 @@ angular.module('carsApp')
         var svg = d3.select('#timeline').append('svg')
             .attr('width', w).attr('height', h).attr('class', 'dc-chart')
             .append('g')
+            .call(tip);
 
         svg.append('g')
           .attr('class', 'y axis')
@@ -277,7 +283,9 @@ angular.module('carsApp')
             .attr('cy', function(d) {
               return y(d.Year);
             })
-            .attr('r', 2.5);
+            .attr('r', 3.5)
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
 
         svg.select('.main').selectAll('text')
           .data($scope.items)
@@ -290,6 +298,6 @@ angular.module('carsApp')
           .attr('y', function(d) {
             return y(d.Year);
           });
-         
+
       })
   });
