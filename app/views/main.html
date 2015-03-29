@@ -10,15 +10,15 @@
 		<div class="bannerOffset">
 			<h1>well, do you drive a car now?</h1>
 			<div class="row leftAlignedDiv">
-					<div ng-click="getAnswer('yes')" class="button blue center">yes</div class="button">
-					<div ng-click="getAnswer('no')" class="button light center">no</div class="button">
+					<div ng-click="move('yes')" class="button blue center">yes</div class="button">
+					<div ng-click="move('no')" class="button light center">no</div class="button">
 			</div>
 		</div>
 	</section>
 
 	<section class="row drivingStats">
 		<div ng-controller="DrivingStatsCtrl">
-			<div class="row">
+			<div class="row" id="drivingStart">
 				<h1>{{wellSegue}}</h1>
 			</div>
 			<div class="row">
@@ -90,6 +90,7 @@
 				<h1>how long until you can buy a self-driving car?</h1>
 				<span>(hover over the items for more information)</span>
 				<div id="timeline"></div>
+				<h1>guess you've got to wait until 2040!</h1>
 			</div>
 		</div>
 	</section>

@@ -16,14 +16,17 @@ var parseYear = d3.time.format('%Y').parse,
 angular.module('carsApp')
   .controller('MainCtrl', function($scope) {
     
-    $scope.getAnswer = function(x) {
+    $scope.move = function(x) {
+      $('html, body').animate({
+          scrollTop: $("#drivingStart").offset().top
+      }, 1000);
       if(x=='no') {
         $scope.wellSegue = "Lucky you! Perhaps you haven't experienced it first hand, but driving can be quite perilous!"
       } else {
         $scope.wellSegue = "You're one of many! As you well know, driving can be quite perilous!";
       }
       return $scope.wellSegue;
-    }
+    };
 
   })
   .controller('ProsConsCtrl', function($scope) {
@@ -190,8 +193,7 @@ angular.module('carsApp')
           })
           .valueAccessor(function(d) {
             return d.value.value;
-          })
-          .renderLabel(false);
+          });
     
         dc.renderAll();
 
