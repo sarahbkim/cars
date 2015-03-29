@@ -26,6 +26,10 @@ angular.module('carsApp')
     }
 
   })
+  .controller('ProsConsCtrl', function($scope) {
+    $scope.pros = ['multitasking', 'less time spent commuting', 'road capacity increase', 'safety', 'cars will park themselves'];
+    $scope.cons = ['fewer jobs', 'can the software be hacked?', 'privacy concerns - self-driving cars rely on collecting and sharing user location data', 'no legal precedent-- in event of a crash, who is responsible?']
+  })
   .controller('DrivingStatsCtrl', function($scope, DataFactory) {
       
     DataFactory('data/car_stats.csv')
@@ -186,43 +190,44 @@ angular.module('carsApp')
           })
           .valueAccessor(function(d) {
             return d.value.value;
-          });
+          })
+          .renderLabel(false);
     
         dc.renderAll();
 
       });
   })
-  .controller('PerceptionsCtrl', function($scope, DataFactory) {
-    DataFactory('data/perceptions.csv')
-      .then(function(data) {
-        $scope.items = d3.csv.parse(data.data);
-        $scope.items.forEach(function(d) {
-          d.year = parseYear(d.year);
-          d.pct = +d.pct;
-        })
+  // .controller('PerceptionsCtrl', function($scope, DataFactory) {
+  //   DataFactory('data/perceptions.csv')
+  //     .then(function(data) {
+  //       $scope.items = d3.csv.parse(data.data);
+  //       $scope.items.forEach(function(d) {
+  //         d.year = parseYear(d.year);
+  //         d.pct = +d.pct;
+  //       })
 
-        var ndx = crossfilter($scope.items),
-            year = ndx.dimension(function(d) { return d.year }),
-            pos = year.group().reduceSum(function(d){ return d.percept === 'pos' ? d.pct : 0 }),
-            neg = year.group().reduceSum(function(d){ return d.percept === 'neg' ? d.pct : 0 });
+  //       var ndx = crossfilter($scope.items),
+  //           year = ndx.dimension(function(d) { return d.year }),
+  //           pos = year.group().reduceSum(function(d){ return d.percept === 'pos' ? d.pct : 0 }),
+  //           neg = year.group().reduceSum(function(d){ return d.percept === 'neg' ? d.pct : 0 });
 
-        $scope.perceptions = dc.barChart('#perceptions')
-          .width(500)
-          .height(175)
-          .margins({top: 40, left: 40, right: 40, bottom: 40})
-          .dimension(year)
-          .group(pos)
-          .stack(neg)
-          .x(d3.time.scale().domain([new Date(1999, 1, 1), new Date(2005, 12, 1)]))
-          .round(d3.time.month.round)
-          .brushOn(false)
-          .xUnits(function() { return 10; });
+  //       $scope.perceptions = dc.barChart('#perceptions')
+  //         .width(500)
+  //         .height(175)
+  //         .margins({top: 40, left: 40, right: 40, bottom: 40})
+  //         .dimension(year)
+  //         .group(pos)
+  //         .stack(neg)
+  //         .x(d3.time.scale().domain([new Date(1999, 1, 1), new Date(2005, 12, 1)]))
+  //         .round(d3.time.month.round)
+  //         .brushOn(false)
+  //         .xUnits(function() { return 10; });
 
-        dc.renderAll();
+  //       dc.renderAll();
 
 
-      })
-  })
+  //     })
+  // })
   .controller('LegislationCtrl', function ($scope, DataFactory) {
     DataFactory('data/legislation_1.csv')
       .then(function(data) {
@@ -283,9 +288,7 @@ angular.module('carsApp')
             .attr('cy', function(d) {
               return y(d.Year);
             })
-            .attr('r', 3.5)
-            .on('mouseover', tip.show)
-            .on('mouseout', tip.hide);
+            .attr('r', 3.5);
 
         svg.select('.main').selectAll('text')
           .data($scope.items)
@@ -297,7 +300,10 @@ angular.module('carsApp')
           .attr('x', 60) 
           .attr('y', function(d) {
             return y(d.Year);
-          });
+          })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
+
 
       })
   });
