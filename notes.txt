@@ -1,0 +1,13 @@
+legislation: 
+resource: Gabriel Weiner and Bryant Walker Smith, Automated Driving: Legislative and Regulatory Action, cyberlaw.stanford.edu/wiki/index.php/Automated_Driving:_Legislative_and_Regulatory_Action
+
+
+history:
+http://en.wikipedia.org/wiki/Autonomous_car
+http://people.idsia.ch/~juergen/robotcars.html
+http://www.bbc.com/news/technology-20910769
+http://www.dailymail.co.uk/sciencetech/article-2278725/The-car-drives--using-iPad-Oxford-University-unveils-robot-car.html#ixzz2KtzUvWhy
+http://www.dailymail.co.uk/sciencetech/article-2278725/The-car-drives--using-iPad-Oxford-University-unveils-robot-car.html#ixzz2KtzUvWhy
+
+predictions:
+http://en.wikipedia.org/wiki/Autonomous_car

@@ -1,0 +1,79 @@
+<div ng-controller="MainCtrl">
+	
+	<section class="row segues">
+		<div class="banner">
+			<h1>would you <strike>drive</strike> ride </br > a self&ndash;driving car?</h1>
+		</div>
+	</section>
+	 
+	<section class="row segues">
+		<div class="bannerOffset">
+			<h1>well, do you drive a car now?</h1>
+			<div class="row leftAlignedDiv">
+					<div ng-click="getAnswer('yes')" class="button blue center">yes</div class="button">
+					<div ng-click="getAnswer('no')" class="button light center">no</div class="button">
+			</div>
+		</div>
+	</section>
+
+	<section class="row drivingStats">
+		<div ng-controller="DrivingStatsCtrl">
+			<div class="row">
+				<h1>{{wellSegue}}</h1>
+			</div>
+			<div class="row">
+				<div class="row">
+					<h3>Car Accidents and Deaths</h3>
+					<div id="accidents" class="col-md-6 floatLeft col-md-offset-1"></div>
+					<div id="collisionsByCate" class="col-md-2 floatLeft"></div>
+				</div>
+				<h4>Death Rates</h4>
+				<div id="deathRates" class="row"></div>
+			</div>
+				
+			<!-- <div class="row">
+				<h3>Collisions</h3>
+				<div id="collisions" class="row"></div>
+			</div> -->
+			<div class="row">
+				<h3>Collisions by Category</h3>
+					<h4>with Other Vehicles</h4>
+					<div id="otherVehicles" class="row"></div>
+				
+					<h4>with Pedestrians</h4>
+					<div id="pedes" class="row"></div>
+
+					<h4>with Fixed Objects</h4>
+					<div id="fixedObjs" class="row"></div>
+					
+					
+			</div>
+			<div class="row">
+				<h3>Registered Cars</h3>
+					<div class="col-md-6 col-md-offset-3">
+						<table class="table">
+							<tr>
+								<th>Year</th>
+								<th>All Vehicles</th>
+								<th>Private Commercial Vehicles</th>
+							</tr>
+								<tr ng-repeat="x in items | filter : 2000">
+								<td>{{x.year | date : 'yyyy'}}</td>
+								<td>{{x.all_vehicles | number }}</td>
+								<td>{{x.private_commercial_vehicles | number }}</td>
+							</tr>	
+						</table>
+					</div>
+			</div>
+		</div>
+	</section>
+
+	<section ng-controller="PerceptionsCtrl">
+		<div class="row">
+			<h3>Willingness to Use Self-Driving Car</h3>
+			<div id="perceptions"></div>
+		</div>
+	</section>
+
+		<div ng-controller="LegislationCtrl"></div>
+</div>
